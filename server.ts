@@ -54,6 +54,8 @@ app.post('/incoming-call', (req: Request, res: Response) => {
     const host = req.headers.host;
     console.log(`\n📞 Incoming call from ${req.body?.From ?? 'unknown'}`);
 
+    console.log("Full call details: ", req.body); 
+
     const twiml = `
         <Response>
             <Say>Connecting to Voice Guard. Start speaking now.</Say>
@@ -64,6 +66,7 @@ app.post('/incoming-call', (req: Request, res: Response) => {
         </Response>
     `;
 
+    console.log("Call received, processing call and establishing websocket connection"); 
     res.type('text/xml');
     res.send(twiml);
 });
