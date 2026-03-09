@@ -3,7 +3,7 @@ import type { Request, Response } from 'express';
 import { createServer } from 'http';
 import { WebSocketServer } from 'ws';
 import { DeepgramClient } from '@deepgram/sdk';
-import { checkCompliance } from './compliance.ts';
+import { checkCompliance } from './compliance.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
