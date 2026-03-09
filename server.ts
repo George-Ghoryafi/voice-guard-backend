@@ -2,6 +2,7 @@ import express from 'express';
 import type { Request, Response } from 'express';
 import { createServer } from 'http';
 import { WebSocketServer } from 'ws';
+// @ts-ignore - Suppress Render import resolution errors
 import { DeepgramClient } from '@deepgram/sdk';
 import { checkCompliance } from './compliance.js';
 import dotenv from 'dotenv';
@@ -97,7 +98,7 @@ wss.on('connection', async (ws) => {
 
     dgConnection.on('open', () => console.log('🟢 Deepgram connected'));
 
-    dgConnection.on('message', async (data) => {
+    dgConnection.on('message', async (data: any) => {
         if (data.type !== 'Results') return;
 
         const transcript = data.channel.alternatives[0]?.transcript;
@@ -118,7 +119,7 @@ wss.on('connection', async (ws) => {
         }
     });
 
-    dgConnection.on('error', (err) => console.error('❗ Deepgram error:', err));
+    dgConnection.on('error', (err: any) => console.error('❗ Deepgram error:', err));
     dgConnection.on('close', () => console.log('🔴 Deepgram disconnected'));
 
     dgConnection.connect();
