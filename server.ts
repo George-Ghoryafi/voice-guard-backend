@@ -18,6 +18,10 @@ let activeCall = false;
 
 const deepgram = new DeepgramClient({ apiKey: process.env['DEEPGRAM_API_KEY']! });
 
+app.get('/ping', (req: Request, res: Response) => {
+    res.status(200).send('Pong! Server is awake.');
+});
+
 // ── Server-Sent Events (Frontend Broadcaster) ─────────────────────────────────
 
 let frontendClients: Response[] = [];
